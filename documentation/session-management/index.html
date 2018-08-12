@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Session Management - 4K Docs</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Session Management";
+    var mkdocs_page_input_path = "session-management.md";
+    var mkdocs_page_url = "/session-management/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 4K Docs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../face-recognition/">Face Recognition</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../speech-processing/">Speech Processing</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Session Management</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#session-management">Session Management</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#working">Working</a></li>
+        
+            <li><a class="toctree-l3" href="#note">Note</a></li>
+        
+            <li><a class="toctree-l3" href="#problems">Problems</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../paas/">Platform as a Service</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../saas/">Software as a Service</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../caas/">Container as a Service</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../staas/">Storage as a Service</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../data-analysis/">Data Analysis</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">4K Docs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Session Management</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="session-management">Session Management</h1>
+<p>It will be an inconvenience to client, if he had to authenticate himself for
+every action on access restricted webpage. Instead, authentication should be
+done once and granted a ticket/token to website. Cookies are used for this same
+purpose. They are a small piece of data that is stored on client's browser to
+maintain the session.
+<br><br></p>
+<h2 id="working">Working</h2>
+<p><strong>Step 1</strong>: When a client is authenticated, a cookie is generated on the server
+using python <code>cookies</code> module in <code>http</code> package and assigned a name <strong>secret</strong>
+with a random string value of 32 bytes.</p>
+<p><strong>Step 2</strong>: The entry containing username along with cookie value is saved to a
+file called cookies.txt in cookies folder. So, when a client will authenticate
+for first time, the new entry will we added in that file. Otherwise, the cookie
+in corresponding entry will get updated.</p>
+<p><strong>Step 3</strong>: The same cookie is sent to the client over web sockets and saved in
+his web browser with expiry time of 3 hrs.</p>
+<p><strong>Step 4</strong>: The first thing every restricted webpage does is, matching the
+client web browser cookie to the corresponding username server cookie saved in
+the cookies.txt. If they matched, client is shown the restricted content.
+Otherwise, he is redirected to login page.
+<br><br></p>
+<h2 id="note">Note</h2>
+<p>We created a <code>cookie.py</code> module which contain three functions to simplify
+managing cookies.</p>
+<ul>
+<li>
+<p><strong>set_cookie</strong> - Generate and save cookie and return cookie object</p>
+</li>
+<li>
+<p><strong>get_cookie</strong> - Get cookie value stored on client browser</p>
+</li>
+<li>
+<p><strong>auth_client</strong> - Return True, if client cookie matches with server cookie
+<br><br></p>
+</li>
+</ul>
+<h2 id="problems">Problems</h2>
+<p><strong>Problem: Unable to write to <code>/var/www/cgi-bin/cookies/cookies.txt</code> from Python
+CGI.</strong></p>
+<p><strong>Solution:</strong> Python program writes to a file using file handling. In case of
+Python CGI, Apache user executes the Python program and Apache user does not
+have the permission to create the file in cookie:</p>
+<ul>
+<li>
+<p>Disable SELINUX<br>
+      <code>setenforce 0</code> or permanently disable it in SELINUX config file<br><br></p>
+</li>
+<li>
+<p>Give Apache permissions to write to cookies folder<br>
+      <code>chown apache /var/www/cgi-bin/cookies</code><br>
+      <code>chgrp apache /var/www/cgi-bin/cookies</code><br>
+      <code>chmod -R 2775 /var/www/cgi-bin/cookies</code><br>
+<br><br></p>
+</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../paas/" class="btn btn-neutral float-right" title="Platform as a Service">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../speech-processing/" class="btn btn-neutral" title="Speech Processing"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../speech-processing/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../paas/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

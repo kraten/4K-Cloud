@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Storage as a Service - 4K Docs</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Storage as a Service";
+    var mkdocs_page_input_path = "staas.md";
+    var mkdocs_page_url = "/staas/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 4K Docs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../face-recognition/">Face Recognition</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../speech-processing/">Speech Processing</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../session-management/">Session Management</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../paas/">Platform as a Service</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../saas/">Software as a Service</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../caas/">Container as a Service</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Storage as a Service</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#highlights">Highlights</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#problems">Problems</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../data-analysis/">Data Analysis</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">4K Docs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Storage as a Service</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="highlights">Highlights</h1>
+<ul>
+<li>
+<p>Give cloud storage to client using NFS</p>
+</li>
+<li>
+<p>Storage can be upgraded as per client requirements</p>
+</li>
+<li>
+<p>Client can access storage in Windows using provided batch file <code>4k_drive.bat</code><br></p>
+</li>
+</ul>
+<p>Batch File <code>4k_drive.bat</code>:</p>
+<pre><code>DISM  /online /enable-feature  /featurename:ServicesForNFS-ClientOnly
+DISM  /online /enable-feature  /featurename:ClientForNFS-Infrastructure
+mount \\192.168.43.98\wshare\guest z:
+</code></pre>
+<p><br>
+<strong>Note:</strong></p>
+<ul>
+<li>DISM (Deployment Image Servicing and Management) allows turning Windows
+features ON and OFF from command line. There are two features that need to be
+enabled in Windows machine to work as NFS Client. As, this is a privileged
+action and it requires admin rights, the batch file need to be run as
+administrator.
+<br><br></li>
+<li>The mount command in the batch file will mount the cloud drive to a windows
+drive with letter name '<strong>z</strong>'. But, there is a problem that it don't work if it run as an
+administrator. So, it need to ran without administrator privilege.
+<br><br></li>
+</ul>
+<h2 id="problems">Problems</h2>
+<p><strong>Problem: The client can't write to file/folder in the windows mounted drive.</strong></p>
+<p><strong>Solution</strong>: When a client requests for a storage, a LV is created and mounted
+to a folder in cloud. That LV is shared to client using NFS. This error usually
+occurs when a client only have the default permissions i.e. 755 to access that
+mounted drive on cloud. This means, client have only read and execute
+permissions and can't write anything.</p>
+<p>Even if the directory to which the LV is going to be mounted is given 777
+permission, the client can't write anything. This is because, when a partition is
+mounted on a directory, the permissions of that directory resets to default i.e.
+755. So instead of changing the permission of directory to 777 before mounting,
+it should be done after mounting the partition.
+<br><br></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../data-analysis/" class="btn btn-neutral float-right" title="Data Analysis">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../caas/" class="btn btn-neutral" title="Container as a Service"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../caas/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../data-analysis/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

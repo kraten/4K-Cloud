@@ -1,0 +1,32 @@
+- hosts: localhost
+  vars_prompt:
+    - name: cname
+
+  tasks:
+  - name: Starting docker service
+    service:
+      name: docker.service
+      state: started
+
+  # Need fast internet to build images 
+  #- name: Create docker image using dockerfile
+  #  command: docker build -t {{ cname }}:latest /var/www/cgi-bin/paas/
+
+  #- name: Launch container from docker image with shellinabox
+  #  command: docker run -p 1234:4200 -dit --name {{cname}} {{ cname }}:latest
+
+  # Uncomment above lines and comment this block if want to build custom docker image
+  - name: Launch container from docker image with shellinabox
+    command: docker run -p 1234:4200 -dit --name {{cname}} python_paas:v5
+
+
+  - name: Get container IP
+    command: docker exec -i "{{ cname }}" ifconfig
+    register: x
+
+  - debug:
+      var: x
+
+  - name: command run
+    command: docker exec -id "{{ cname }}" bash -l  -c  'shellinaboxd -t -s /:SSH:0.0.0.0 -b'
+    ignore_errors: true

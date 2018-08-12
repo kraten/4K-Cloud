@@ -1,0 +1,86 @@
+- hosts: nn
+  vars_prompt:
+    - name: ip
+  tasks:
+  - name: copying empty files hdfs
+    copy:
+     src: /root/hdfs-site.xml
+     dest: /etc/hadoop/hdfs-site.xml
+
+  - name: Copying empty files core-site
+    copy:
+     src: /root/core-site.xml
+     dest: /etc/hadoop/core-site.xml
+  - name: copying file 
+    lineinfile: 
+     path: /etc/hadoop/hdfs-site.xml
+     insertafter: "{{ item.insertafter }}"
+     line: "{{ item.line }}"
+    with_items:
+      - { insertafter: '<configuration>',line: '<property>' }
+      - { insertafter: '<property>',line: '<name>dfs.name.dir</name>' }
+      - { insertafter: '</name>',line: '<value>/data</value>' }
+      - { insertafter: '</value>',line: '</property>' }
+   
+  - name: Configuating core-site file name node
+    lineinfile: 
+     path: /etc/hadoop/core-site.xml
+     insertafter: "{{ item.insertafter }}"
+     line: "{{ item.line }}"
+    with_items:
+      - { insertafter: '<configuration>',line: '<property>' }
+      - { insertafter: '<property>',line: '<name>fs.default.name</name>' }
+      - { insertafter: '</name>',line: '<value>hdfs://{{ip}}:9001</value>' }
+      - { insertafter: '</value>',line: '</property>' }
+  - name: Deleting existing share folder
+    file:
+     path: /data
+     state: absent
+  - name: Creating share folder
+    file:
+     path: /data
+     state: directory
+      
+
+
+- hosts: dn
+  tasks:
+  - name: copying empty files hdfs
+    copy:
+     src: /root/hdfs-site.xml
+     dest: /etc/hadoop/hdfs-site.xml
+
+  - name: Copying empty file core-site
+    copy:
+     src: /root/hdfs-site.xml
+     dest: /etc/hadoop/core-site.xml
+
+  - name: Configuating hdfs file for name node
+    lineinfile: 
+     path: /etc/hadoop/hdfs-site.xml
+     insertafter: "{{ item.insertafter }}"
+     line: "{{ item.line }}"
+    with_items:
+      - { insertafter: '<configuration>',line: '<property>' }
+      - { insertafter: '<property>',line: '<name>dfs.data.dir</name>' }
+      - { insertafter: '</name>',line: '<value>/data</value>' }
+      - { insertafter: '</value>',line: '</property>' }
+   
+  - name: Configuating core-site file name node
+    lineinfile: 
+     path: /etc/hadoop/core-site.xml
+     insertafter: "{{ item.insertafter }}"
+     line: "{{ item.line }}"
+    with_items:
+      - { insertafter: '<configuration>',line: '<property>' }
+      - { insertafter: '<property>',line: '<name>fs.default.name</name>' }
+      - { insertafter: '</name>',line: '<value>hdfs://{{ ip }}:9001</value>' }
+      - { insertafter: '</value>',line: '</property>' }
+  - name: Deleting existing share folder
+    file:
+     path: /data
+     state: absent
+  - name: Creating share folder
+    file:
+     path: /data
+     state: directory

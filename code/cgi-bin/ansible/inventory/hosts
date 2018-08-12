@@ -1,0 +1,16 @@
+[myhost]
+localhost
+
+[nn]
+nn.hdfs.com
+
+[dn]
+dn.hdfs.com
+tt.mr.com
+
+[jt]
+jt.mr.com
+
+[tt]
+dn.hdfs.com
+tt.mr.com

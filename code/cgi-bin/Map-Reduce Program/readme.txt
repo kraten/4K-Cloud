@@ -1,0 +1,1 @@
+cat dataamp.csv | ./mapper.py | ./reducer.py

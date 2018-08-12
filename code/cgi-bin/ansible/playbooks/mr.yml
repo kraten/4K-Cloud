@@ -1,0 +1,55 @@
+- hosts: jt
+  vars_prompt:
+    - name: ipj
+    - name: ipn
+  tasks:
+  - name: copying mapred file
+    copy:
+     src: "/root/mapred-site.xml"
+     dest: "/etc/hadoop/mapred-site.xml"
+  - name: writing to the mapred file
+    lineinfile:
+        path: "/etc/hadoop/mapred-site.xml"
+        insertafter: "{{ item.insertafter }}"
+        line: "{{ item.line }}"
+    with_items:
+        - { insertafter: '<configuration>' ,line: '<property>'}
+        - { insertafter: '<property>', line: '<name>mapred.job.tracker</name>'}
+        - { insertafter: '</name>', line: '<value>{{ ipj }}:9002</value>' }
+        - { insertafter: '</value>', line: '</property>'}
+  - name: Copying empty files core-site
+    copy:
+     src: /root/core-site.xml
+     dest: /etc/hadoop/core-site.xml 
+  - name: making namenode client
+    lineinfile:
+        path: "/etc/hadoop/core-site.xml"
+        insertafter: "{{ item.insertafter }}"
+        line: "{{ item.line }}"
+    with_items:
+        - { insertafter: '<configuration>' ,line: '<property>'}
+        - { insertafter: '<property>' ,line: '<name>fs.default.name</name>'}
+        - { insertafter: '</name>', line: '<value>hdfs://{{ ipn }}:9001</value>'}
+        - { insertafter: '</value>' ,line: '</property>'}
+        
+  - name: starting job tracker
+    command: /usr/sbin/hadoop-daemon.sh start jobtracker
+
+- hosts: tt
+  tasks:
+  - name: copying mapred file
+    copy: 
+     src:  "/root/mapred-site.xml"
+     dest: "/etc/hadoop/mapred-site.xml"
+  - name: writing to the mapred file
+    lineinfile:
+        path: "/etc/hadoop/mapred-site.xml"
+        insertafter: "{{ item.insertafter }}"
+        line: "{{ item.line }}"
+    with_items:
+        - { insertafter: '<configuration>' ,line: '<property>'}
+        - { insertafter: '<property>', line: '<name>mapred.job.tracker</name>'}
+        - { insertafter: '</name>', line: '<value>{{ ipj }}:9002</value>' }
+        - { insertafter: '</value>', line: '</property>'}
+  - name: starting task tracker
+    command: /usr/sbin/hadoop-daemon.sh start tasktracker

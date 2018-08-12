@@ -1,0 +1,11 @@
+- hosts: nn
+  tasks:
+   - name: format name node
+     command: bash -c  "/usr/bin/echo 'Yes' | /usr/bin/hadoop  namenode   -format"
+   - name: restart name node
+     command: /usr/sbin/hadoop-daemon.sh  start namenode
+- hosts: dn
+  tasks:
+   - name: restart data node
+     command: /usr/sbin/hadoop-daemon.sh start datanode
+ 

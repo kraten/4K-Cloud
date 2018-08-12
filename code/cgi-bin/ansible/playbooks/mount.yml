@@ -1,0 +1,14 @@
+- hosts: localhost
+  vars:
+    u: "t3"
+  tasks:
+   - name: mounting 
+     mount:
+      path: /wshare/{{u}}/
+      src: /dev/vgcloud/{{u}}
+      fstype: ext4
+      state: mounted
+     register: x
+
+   - debug: 
+       var: x

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  
+  <link rel="shortcut icon" href="./img/favicon.ico">
+  <title>Home - 4K Docs</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="./css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Home";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = "/";
+  </script>
+  
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> 4K Docs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href=".">Home</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#welcome-to-4k-first-legal-aid">Welcome to 4K First Legal Aid</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#requirements">Requirements</a></li>
+        
+            <li><a class="toctree-l3" href="#project-layout">Project layout</a></li>
+        
+            <li><a class="toctree-l3" href="#contributors">Contributors</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="face-recognition/">Face Recognition</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="speech-processing/">Speech Processing</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="session-management/">Session Management</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="paas/">Platform as a Service</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="saas/">Software as a Service</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="caas/">Container as a Service</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="staas/">Storage as a Service</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="data-analysis/">Data Analysis</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">4K Docs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="welcome-to-4k-first-legal-aid">Welcome to 4K First Legal Aid</h1>
+<p>The product aims to provide a solution to different types of real-life legal
+scenarios which an individual is facing. It will assist them by showing the
+legitimate solution regarding their legal queries. An individual needs to enter
+his complaint and the product will assist whether any previous cases have been
+reported, which have similar context and inform him about different actions he
+should take. Different datasets stored in Hadoop cluster and analyzed on
+MapReduce cluster will be used to train the machine learning model. This model
+will be used to analyze and predict the accurate solutions based on their legal
+queries.
+<br><br></p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li><code>RHEL 7+</code></li>
+<li><code>Python 3.6+</code></li>
+<li><code>Docker</code></li>
+<li><code>Ansible</code></li>
+<li><code>Hadoop</code></li>
+</ul>
+<h4 id="packages">Packages</h4>
+<ul>
+<li><code>face_recognition</code>    - pip3 install face_recognition</li>
+<li><code>OpenCV 3+</code>           - pip3 install opencv-python</li>
+<li><code>dlib</code></li>
+<li><code>web sockets</code>         - pip3 install websockets</li>
+</ul>
+<p><strong>Note: The project will not work until following is done</strong></p>
+<ul>
+<li>
+<p>Disable SELINUX: <code>setenforce 0</code></p>
+</li>
+<li>
+<p>Disable Firewall: <code>iptables -F</code></p>
+</li>
+<li>
+<p>Run face authentication python program: <code>./cgi-bin/socket_imgauth.py &amp;</code></p>
+</li>
+<li>
+<p>Run speech processing python program: <code>./cgi-bin/socket_voice.py &amp;</code></p>
+</li>
+<li>
+<p>ServerIP: 192.168.43.98 (Not used in dynamic way, so need to change manually
+  in some files)
+<br><br></p>
+</li>
+</ul>
+<h2 id="project-layout">Project layout</h2>
+<p>Including only the necessary files and dependencies in the project tree below</p>
+<pre><code>www
+  ├── html
+  │   ├── index.html                # Product homepage
+  │   ├── login.html                # Login webpage
+  │   │
+  │   ├── js
+  │   │   │-- Face Recognition ------------------------------------------------------------
+  │   │   ├── socket.js             # Client-side web socket for Face Authentication
+  │   │   ├── captureImage.js       # Configure webcam and capture image
+  │   │   ├── webcam.min.js         # HTML5 Webcam Image Capture Library
+  │   │   │
+  │   │   │-- Speech Processing -----------------------------------------------------------
+  │   │   ├── socket_speech.js      # Client-side web socket for Speech Processing
+  │   │   ├── speech.js             # Configure Speech Recognition
+  │   │   ├── say.js                # Speech Synthesizer
+  │   │   ├── annyang.min.js        # Voice Recognition Library
+  │   │   └── speechkitt.min.js     # GUI for interacting with Speech Recognition
+  │   │
+  │   │-- Template Header and Footer -------------------------------------------------------
+  │   ├── start_content.html        # Template Header
+  │   └── end_content.txt           # Template Footer
+  │
+  └── cgi-bin
+      │-- First Legal Aid -------------------------------------------------------------------
+      ├── fla.py                    # First Legal Aid(FLA) Query Frontend
+      ├── law_nlp.py                # Plot graphs and display laws as per the query
+      ├── data.csv                  # FLA Dataset-1
+      ├── descdata.csv              # FLA Dataset-2
+      │
+      │-- Face Authentication ---------------------------------------------------------------
+      ├── takepic.py                # Captures an image which will be used for face ID
+      ├── socket_imgauth.py         # Server-side web socket for Face Authentication
+      ├── face.py                   # Matches unknown face with stored client's faces
+      ├── cookie.py                 # Create and store cookies and manage client sessions
+      │
+      │-- Speech Processing ------------------------------------------------------------------
+      ├── socket_voice.py           # Server-side web socket for Speech Processing
+      ├── nlp.py                    # Process text and returns custom URL
+      │
+      │-- Services ---------------------------------------------------------------------------
+      ├── list_services.py          # Frontend for listing all services
+      │
+      │-- PaaS -------------------------------------------------------------------------------
+      ├── get_paas.py               # PaaS Frontend
+      ├── paas.py                   # PaaS Backend
+      ├── show_container.py         # Gives access to a container in browser using shellinabox
+      │
+      │-- STaaS ------------------------------------------------------------------------------
+      ├── get_staas.py              # STaaS Frontend
+      ├── staas.py                  # STaaS Backend
+      │
+      │-- SaaS -------------------------------------------------------------------------------
+      ├── saas.py                   # SaaS Frontend
+      │
+      │-- CaaS -------------------------------------------------------------------------------
+      ├── get_caas.py               # CaaS Frontend
+      ├── cass-laun.py              # Launch container
+      ├── container_manager.py      # Show dock_manage.py in iframe
+      ├── dock_manage.py            # Start, stop and access containers and display real-time stats
+      ├── doc-start.py              # Start container
+      ├── doc-stop.py               # Stop container
+      │
+      │-- Hadoop and Map Reduce --------------------------------------------------------------
+      ├── get_hadoop_cluster.py     # Hadoop Setup Frontend
+      ├── hadoop.py                 # Setup Hadoop Cluster on name node and data nodes
+      ├── hadoop11.py               # Start name node and data node services
+      ├── hadoop12.py               # Setup MapReduce Cluster on job tracker and task tracker nodes
+      └── hadoop_manager.py         # Frontend to give access to Hadoop Storage and MapReduce Cluster
+</code></pre>
+<p><br></p>
+<h2 id="contributors">Contributors</h2>
+<ul>
+<li><code>Kartike Bansal</code></li>
+<li><code>Parag Khunteta</code></li>
+<li><code>Shatakshi Kashyap</code></li>
+<li><code>Yash Katta</code></li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="face-recognition/" class="btn btn-neutral float-right" title="Face Recognition">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+        <span style="margin-left: 15px"><a href="face-recognition/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="./js/theme.js"></script>
+      <script src="./search/require.js"></script>
+      <script src="./search/search.js"></script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 0.17.4
+Build Date UTC : 2018-07-03 08:28:14
+-->

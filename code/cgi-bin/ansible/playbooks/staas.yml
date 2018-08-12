@@ -1,0 +1,92 @@
+- hosts: localhost
+  vars:
+    s: "{{s}}"
+    u: "{{u}}"
+  tasks:
+   - command: bash -c "/usr/sbin/iptables -F"
+
+   - file: 
+       path: /wshare/{{u}}
+       state: directory
+       mode: 02777
+     register: x
+ 
+   - debug: 
+       var: x
+
+   - name: stopping nfs service
+     service:
+       name: nfs
+       state: stopped
+     register: x
+   
+   - debug:
+       msg: x
+  
+   - lvg: 
+      vg: "vgcloud"     
+      pvs: /dev/sdb3 
+
+   - name: creating a lvm of size s
+     lvol:
+      vg: vgcloud
+      lv: "{{ u }}"
+      size: "{{ s }}"
+      pvs: /dev/sdb3
+     register: x
+
+   - debug:
+       var: x  
+
+   - name: formatting ext4 
+     filesystem: 
+       fstype: ext4
+       dev: /dev/vgcloud/{{u}}
+     
+     register: x
+
+   - debug:
+       var: x  
+
+   - name: mounting 
+     mount:
+      path: /wshare/{{u}}/
+      src: /dev/vgcloud/{{u}}
+      fstype: ext4
+      state: mounted
+      
+     register: x
+
+   - debug:
+       var: x  
+
+   - command: "sudo /usr/bin/mount -a"
+     register: x
+   - debug: 
+       var: x
+
+   - file: 
+       path: /wshare/{{u}}
+       mode: 02777
+     register: x
+   - debug: 
+       var: x
+
+   - name: entering in /etc/exports
+     copy:
+      content: "/wshare/{{u}} *(rw,sync,no_root_squash)"
+      dest: "/etc/exports"
+     register: x
+
+   - debug:
+       var: x              
+
+   - name: starting service
+     service:
+       name: nfs
+       state: restarted
+     register: x
+
+   - debug:
+       var: x    
+

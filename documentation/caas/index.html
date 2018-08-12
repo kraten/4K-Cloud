@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Container as a Service - 4K Docs</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Container as a Service";
+    var mkdocs_page_input_path = "caas.md";
+    var mkdocs_page_url = "/caas/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 4K Docs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../face-recognition/">Face Recognition</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../speech-processing/">Speech Processing</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../session-management/">Session Management</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../paas/">Platform as a Service</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../saas/">Software as a Service</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Container as a Service</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#highlights">Highlights</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#problems">Problems</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../staas/">Storage as a Service</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../data-analysis/">Data Analysis</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">4K Docs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Container as a Service</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="highlights">Highlights</h1>
+<ul>
+<li>Start, stop and launch containers of different OS</li>
+<li>Monitor container stats like RAM, Network Usage, etc. in real-time
+<br><br></li>
+</ul>
+<h2 id="problems">Problems</h2>
+<p><strong>Problem 1: How to get docker container stats in real-time?</strong><br>
+<strong>Solution</strong>: Any docker container stats can be viewed using the command<br>
+<code># docker stats container_name</code></p>
+<p>There is a problem with the above command as it do show live stats but it
+continues to run indefinitely. However, there is an option to show the live
+stats only of that instant. <br>
+<code># docker stats container_name --no-stream</code></p>
+<p><strong>Problem 2: How to update container stats displayed on the HTML page every
+second?</strong><br>
+<strong>Solution</strong>: Use HTML header meta tag to reload the webpage after every fixed
+duration of seconds<br>
+        <code>&lt;meta http-equiv = "refresh" content ="1"/&gt;</code>
+<br><br></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../staas/" class="btn btn-neutral float-right" title="Storage as a Service">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../saas/" class="btn btn-neutral" title="Software as a Service"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../saas/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../staas/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>
